@@ -58,6 +58,7 @@ function getMarvelResponse(inputValue) {
         name: inputValue
     })
         .done(function (data) {
+
             getHeroStat(25, 40);
             getHeroHealth(50, 100);
             renderHero(data.data.results[0]);
@@ -72,7 +73,7 @@ function getMarvelResponseRight(inputValueRight) {
 
     var ts = new Date().getTime();
     var hash = md5(ts + PRIV_KEY + PUBLIC_KEY).toString();
-    var url = 'https://gateway.marvel.com:80/v1/public/characters';
+    var url = 'http://gateway.marvel.com:80/v1/public/characters';
     $.getJSON(url, {
         ts: ts,
         apikey: PUBLIC_KEY,
@@ -171,7 +172,7 @@ function combatEngineLeftAttack(heroStatLeft, heroHealthRight) {
             if (roll2 >= .85) {
                 //if hit is greater than .85 its a crit
                 console.log("critical strike");
-                var heroAttack = (heroStatLeft * roll) + (heroStatLeft * .15);
+                var heroAttack = (heroStatLeft * roll) + (heroStatLeft * .25);
                 console.log("third If", heroAttack);
                 console.log("3ifhealth", heroHealthRight);
                 if (heroHealthRight <= heroAttack) {
@@ -188,7 +189,7 @@ function combatEngineLeftAttack(heroStatLeft, heroHealthRight) {
                 }
             }
             else {
-                var heroAttack = (heroStatLeft * roll);
+                var heroAttack = heroStatLeft + (heroStatLeft * roll);
 
                 if (heroHealthRight <= heroAttack) {
                     heroHealthRightDiv.value = 0;
@@ -208,9 +209,8 @@ function combatEngineLeftAttack(heroStatLeft, heroHealthRight) {
             console.log("Miss");
         }
     }
-
     else {
-        alert("Game Over!");
+        alert("Game Over! Hero Left Wins!");
     }
 }
 function combatEngineRightAttack(heroStatRight, heroHealthLeft) {
@@ -228,7 +228,7 @@ function combatEngineRightAttack(heroStatRight, heroHealthLeft) {
             
             if (roll2 >= .85) {
                 console.log("critical strike");
-                var heroAttack = (heroStatRight * roll) + (heroStatRight * .15);
+                var heroAttack = (heroStatRight * roll) + (heroStatRight * .25);
                 console.log("third If", heroAttack);
                 console.log("3ifhealth", heroHealthLeft);
              
@@ -252,7 +252,7 @@ function combatEngineRightAttack(heroStatRight, heroHealthLeft) {
                     heroHealthLeftDiv.innerHTML = heroHealthLeft;
 
                     console.log("HERO HEALTH HIT: ", heroHealthLeft);
-                    alert("Game Over, Hero Left Wins");
+                    alert("Game Over, Hero RIGHT Wins");
                 }
                 else {
                     console.log("second if else");
@@ -268,11 +268,21 @@ function combatEngineRightAttack(heroStatRight, heroHealthLeft) {
         }
     }
     else {
-        alert("Game Over!");
+        alert("Game Over! Hero Right Wins!");
     }
 }
 // -----------------------End Combat Engine___________________________
 
+window.addEventListener("keydown", checkKeyPressed, false);
+ 
+function checkKeyPressed(e) {
+    if (e.keyCode == "192") {
+        combatEngineRightAttack(heroStatRight, heroHealthLeft);
+    }
+    else if (e.keyCode == "187"){
+        combatEngineLeftAttack(heroStatLeft, heroHealthRight);
+    }
+}
 // --------------------------Engage Combat___________________________
 
 function engageCombat() {

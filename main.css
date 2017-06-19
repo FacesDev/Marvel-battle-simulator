@@ -21,7 +21,7 @@ body {
     border-radius: 50%;
 }
 
-.left-container {
+.left-container, .right-container {
     flex: 1 1 50%;
     display:flex;
     justify-content: center;
@@ -29,20 +29,13 @@ body {
     text-align:center;
 
 }
-.right-container {
-    flex: 1 1 50%;
-    display:flex;
-    justify-content: center;
-    flex-direction:column;
-    text-align:center;
-}
-
 
 .hero-container {
        display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height:30vh;
 }
 
 .hero-power {
@@ -52,14 +45,15 @@ body {
 }
 
 #input, #input-right {
-	width:300px;
+	margin-left:20%;
+    margin-right:20%;
 	background:#691107;
 	color:#fff;
 	font-weight:900;
 	font-size:25px;
 	text-align:center;
 	transition:all 0.3s ease;
-    
+    margin-bottom:30vh;
 }
 #input:hover {
 	border-radius:50%;
@@ -70,7 +64,12 @@ body {
 button {
     cursor: pointer;
 }
+.button-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
 
+}
 
 
 .hero-name-right {
@@ -95,12 +94,25 @@ button {
 
 #battle-on {
   
-    position: relative;
-    top:20%;
+    /*position: relative;
+    top:20%;*/
+    margin-bottom:30px;
     width: 200px;
     height: 100px;
     background-color:white;
+    border-radius:5px;
     
+}
+#reset {
+  
+    text-decoration: none;
+    color: initial;
+    margin-top: 20px;
+    width:200px;
+    background-color:red;
+    height:40px;
+    border-radius: 50%;
+    padding:20px;
 }
 #ui-id-2, #ui-id-1 {
     width:100%;
@@ -112,7 +124,7 @@ button {
 .ui-menu-item {
     color:white;
     font-weight:bold;
-    font-size:25px;
+    font-size:20px;
 }
 
 .hero-wrapper {
@@ -120,13 +132,26 @@ button {
   justify-content: space-around;
   align-items: center;
   flex: 1 0 100%;
-  background-image: url("./background.jpg");
-  background-size: cover;
-  padding-left: 4vw;
-  padding-top: 40vh;
+  /*background-image: url("./background.jpg");
+  background-size: cover;*/
+
 }
 .ui-helper-hidden-accessible {
     width:0%;
+}
+#player-one {
+    margin-bottom:30px;
+    width: 200px;
+    height: 100px;
+    background-color:white;
+    border-radius:5px;
+}
+#player-two {
+    margin-bottom:30px;
+    width: 200px;
+    height: 100px;
+    background-color:white;
+    border-radius:5px;
 }
 /*__________________________________HEALTH BAR____________________*/
 
@@ -138,6 +163,7 @@ progress {
 	/*display: block;*/
 	-webkit-appearance: none;
 	border: none;
+
 }
 
 
@@ -146,6 +172,7 @@ progress::-webkit-progress-bar {
 	border-radius: 50px;
 	padding: 2px;
 	box-shadow: 0 1px 0px 0 rgba(255, 255, 255, 0.2);
+  
 }
 
 
@@ -156,6 +183,7 @@ progress::-webkit-progress-value {
 		-webkit-linear-gradient(45deg, transparent, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%),
 		-webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.2)),
 		-webkit-linear-gradient(left, green, darkgreen);
+        transition:all 0.5s ease;
 	
 
 	background-size: 25px 14px, 100% 100%, 100% 100%;
@@ -166,4 +194,5 @@ progress::-webkit-progress-value {
 @-webkit-keyframes move {
 	0% {background-position: 0px 0px, 0 0, 0 0}
 	100% {background-position: -100px 0px, 0 0, 0 0}
+  
 }
