@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="./main.css">
+      <title>Marvel</title>
+   </head>
+   <body>
+    <div class="hero-wrapper">
+     <div class="left-container">
+        <div class="hero-container">
+            <input type="text" placeholder="Select Your Hero" id="input" list="hero-name-list"></input>
+            <datalist id="hero-name-list"></datalist>
+            <h3 class="hero-name-left"></h3>
+            <image src="./questionmark.jpg" class="hero-photo" id="hero-photo-left"></image>
+             <progress id="healthLeft" value="100" class="hero-health-left hero-health" max="100"></progress>
+            <div class="hero-power hero-power-left"></div>
+        </div>
+     </div>
+      <button id="battle-on" onCLick="engageCombat(this)">BATTLE ON!</button>
+     <div class="right-container">
+        <div class="hero-container">
+            <input type="text" placeholder="Select Your Opponent" id="input-right"></input>
+            <h3 class="hero-name-right"></h3>
+            <image src="./questionmark.jpg" class="hero-photo" id="hero-photo-right"></image>
+            <progress id="healthRight" value="100" class="hero-health-right hero-health" max="100"></progress>
+            <div class="hero-power hero-power-right"></div>
+        </div>
+      </div>
+     
+    </div>
+        
+
+    
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <!--<link href="http://fonts.googleapis.com/css?family=Trade+Winds" rel="stylesheet" type="text/css">-->
+  <script src="./character.js" charset="utf-8"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="./md5.min.js" charset="utf-8"></script>
+   <script src="./main.js" charset="utf-8"></script>
+   
+   </body>
+</html>
+
+
+
+
