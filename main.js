@@ -72,7 +72,7 @@ function getMarvelResponseRight(inputValueRight) {
 
     var ts = new Date().getTime();
     var hash = md5(ts + PRIV_KEY + PUBLIC_KEY).toString();
-    var url = 'http://gateway.marvel.com:80/v1/public/characters';
+    var url = 'https://gateway.marvel.com:80/v1/public/characters';
     $.getJSON(url, {
         ts: ts,
         apikey: PUBLIC_KEY,
