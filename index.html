@@ -10,28 +10,34 @@
      <div class="left-container">
          <input type="text" placeholder="Select Your Hero" id="input" list="hero-name-list"></input>
             <datalist id="hero-name-list"></datalist>
+            <div id="left-combat-log" class="combat-log"></div>
         <div class="hero-container">
             
             <h3 class="hero-name-left"></h3>
             <image src="./questionmark.jpg" class="hero-photo" id="hero-photo-left"></image>
              <progress id="healthLeft" value="100" class="hero-health-left hero-health" max="100"></progress>
             <div class="hero-power hero-power-left"></div>
+            <button id="player-two" onload="player-two-event-listener" onCLick="combatEngineRightAttack(heroStatRight, heroHealthLeft)">Player One! (~ to atack)</button>
+         </button>
         </div>
      </div>
       <div class="button-container">
          <button id="battle-on" onCLick="engageCombat(this)">BATTLE ON!</button>
-         <button id="player-one"  onCLick="combatEngineLeftAttack(heroStatLeft, heroHealthRight)">Player One! (~ to attack)
-         </button>
-         <button id="player-two" onload="player-two-event-listener" onCLick="combatEngineRightAttack(heroStatRight, heroHealthLeft)">Player Two! (= to atack)</button>
+         <!--<button id="player-one"  onCLick="combatEngineLeftAttack(heroStatLeft, heroHealthRight)">Player One! (~ to attack)--></button>
+         <!--<button id="player-two" onload="player-two-event-listener" onCLick="combatEngineRightAttack(heroStatRight, heroHealthLeft)">Player Two! (= to atack)</button>-->
          <a id="reset" href="./index.html">Reset Battle!</a>
          </div>
      <div class="right-container">
         <input type="text" placeholder="Select Your Opponent" id="input-right"></input>
+        <div id="right-combat-log" class="combat-log"></div>
         <div class="hero-container">
-            <h3 class="hero-name-right"></h3>
-            <image src="./questionmark.jpg" class="hero-photo" id="hero-photo-right"></image>
             <progress id="healthRight" value="100" class="hero-health-right hero-health" max="100"></progress>
             <div class="hero-power hero-power-right"></div>
+            <h3 class="hero-name-right"></h3>
+            <image src="./questionmark.jpg" class="hero-photo" id="hero-photo-right"></image>
+            <button id="player-one"  onCLick="combatEngineLeftAttack(heroStatLeft, heroHealthRight)">Player Two! ( = to attack)
+
+
         </div>
       </div>
     </div>

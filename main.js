@@ -59,7 +59,7 @@ function getMarvelResponse(inputValue) {
     })
         .done(function (data) {
 
-            getHeroStat(25, 40);
+            getHeroStat(20, 30);
             getHeroHealth(50, 100);
             renderHero(data.data.results[0]);
         })
@@ -81,7 +81,7 @@ function getMarvelResponseRight(inputValueRight) {
         name: inputValueRight
     })
         .done(function (data) {
-            getHeroStatRight(25, 40);
+            getHeroStatRight(20, 30);
             getHeroHealthRight(50, 100);
             renderHeroRight(data.data.results[0]);
         })
@@ -152,123 +152,122 @@ function getHeroStatRight(min, max) {
     return;
 }
 // -------------------------BATTLE-Power END-------------------
-
+var combatLogLeft = document.getElementById("left-combat-log");
+var combatLogRight = document.getElementById("right-combat-log");
 // -------------------------Combat Engine-------------------
 function combatEngineLeftAttack(heroStatLeft, heroHealthRight) {
-    console.log("Engine Left");
-    console.log("hero powerpre if: ", heroStatLeft);
-    
     if (heroHealthRightDiv.value > 0) {
         //if hero health > 0 attack
-        console.log("First If");
         var roll = Math.random();
-        console.log('heropower: ', heroStatLeft);
-        console.log("roll", roll);
         if (roll >= .15) {
             //if roll is greater than .15 it's a hit, else miss
             var roll2 = Math.random();
-            console.log(roll2);
-            console.log("second If", heroHealthRight);
             if (roll2 >= .85) {
                 //if hit is greater than .85 its a crit
                 console.log("critical strike");
-                var heroAttack = (heroStatLeft * roll) + (heroStatLeft * .25);
-                console.log("third If", heroAttack);
-                console.log("3ifhealth", heroHealthRight);
-                if (heroHealthRight <= heroAttack) {
+                var heroAttack = (heroStatLeft * roll) + (heroStatLeft * .15);
+                if (heroHealthRightDiv.value <= heroAttack) {
                     //if hero health is greater than or = to attack game over
                     heroHealthRightDiv.value = 0;
                     heroHealthRightDiv.innerHTML = heroHealthRight;
-                    alert("Game Over, Hero Left Wins");
+                    combatLogRight.innerHTML = (Math.round(heroAttack) + " Critical Strike!");
+                    console.log("Death Crit Left: ", heroAttack)
+                    alert("Game Over, Player One Wins");
                 }
                 else {
-                    heroHealthRight -= heroAttack;
-                    heroHealthRightDiv.value = heroHealthRight - heroAttack;
-                    console.log("third if else", heroHealthRightDiv.value);
-                    heroHealthRightDiv.innerHTML = heroHealthRight;
+                    heroHealthRightDiv.value = (heroHealthRight - heroAttack);
+                    heroHealthRightDiv.innerHTML = heroHealthRightDiv.value;
+                    combatLogRight.innerHTML = (Math.round(heroAttack) + " Critical Strike!");
+                    console.log("crit Left: ", heroAttack);
                 }
             }
             else {
-                var heroAttack = heroStatLeft + (heroStatLeft * roll);
-
-                if (heroHealthRight <= heroAttack) {
+                var heroAttack = (heroStatLeft * roll);
+                console.log("non-crit :", heroAttack);
+                console.log("non-crit hero health: ", heroHealthRight);
+                console.log("non-crit hero health value: ", heroHealthRightDiv.value);
+                if (heroHealthRightDiv.value <= heroAttack) {
+                    console.log("non-crit OTK", heroAttack);
+                    console.log("non-crit OTK health: ", heroHealthRightDiv.value);
                     heroHealthRightDiv.value = 0;
                     heroHealthRightDiv.innerHTML = heroHealthRight;
-                    console.log("HERO HEALTH HIT: ", heroHealthRight);
-                    alert("Game Over, Hero Left Wins");
+                    combatLogRight.innerHTML = Math.round(heroAttack);
+                    alert("Game Over, Player One Wins");
                 }
                 else {
-                    console.log("second if else");
-                    heroHealthRight -= (heroStatLeft * roll);
-                    heroHealthRightDiv.innerHTML = heroHealthRight;
-                    heroHealthRightDiv.value = heroHealthRight;
+                    console.log("non-crit no OTK: ", heroAttack);
+                    console.log("non-crit hero health: ", heroHealthRight);
+                    heroHealthRightDiv.value -= (heroStatLeft * roll);
+                    heroHealthRightDiv.innerHTML = heroHealthRightDiv.value;
+                    // heroHealthRightDiv.value = heroHealthRight;
+                    combatLogRight.innerHTML = Math.round(heroAttack);
                 }
             }
         }
         else {
-            console.log("Miss");
+            combatLogRight.innerHTML = "Miss! Player Two Heals for " + heroStatRight;
+            heroHealthRightDiv.value += heroStatRight;
         }
     }
     else {
-        alert("Game Over! Hero Left Wins!");
+        alert("Game Over! Player One Wins!");
     }
 }
 function combatEngineRightAttack(heroStatRight, heroHealthLeft) {
-    console.log("Engine Right");
-    console.log("hero power pre if: ", heroStatRight);
-    if (heroHealthLeftDiv.value >= 0) {
-        console.log("First If");
+    if (heroHealthLeftDiv.value > 0) {
+        //if hero health > 0 attack
         var roll = Math.random();
-        console.log('heropower: ', heroStatRight);
-        console.log("roll", roll);
         if (roll >= .15) {
+            //if roll is greater than .15 it's a hit, else miss
             var roll2 = Math.random();
-            console.log(roll2);
-            console.log("second If", heroHealthLeft);
-            
             if (roll2 >= .85) {
+                //if hit is greater than .85 its a crit
                 console.log("critical strike");
-                var heroAttack = (heroStatRight * roll) + (heroStatRight * .25);
-                console.log("third If", heroAttack);
-                console.log("3ifhealth", heroHealthLeft);
-             
-                if (heroHealthLeft <= heroAttack) {
+                var heroAttack = (heroStatRight * roll) + (heroStatRight * .15);
+                if (heroHealthLeftDiv.value <= heroAttack) {
+                    //if hero health is greater than or = to attack game over
                     heroHealthLeftDiv.value = 0;
                     heroHealthLeftDiv.innerHTML = heroHealthLeft;
-                    alert("Game Over, Hero Right Wins");
+                    combatLogLeft.innerHTML = (Math.round(heroAttack) + " Critical Strike!");
+                    console.log("Death Crit Left: ", heroAttack)
+                    alert("Game Over, Player Two Wins");
                 }
                 else {
-                
-                    heroHealthLeftDiv.value = heroHealthLeft - heroAttack;
-                    heroHealthLeftDiv.innerHTML = heroHealthLeft;
-
-                    console.log("third if else", heroHealthLeftDiv.value);
+                    heroHealthLeftDiv.value = (heroHealthLeftDiv.value - heroAttack);
+                    heroHealthLeftDiv.innerHTML = heroHealthLeftDiv.value;
+                    combatLogLeft.innerHTML = (Math.round(heroAttack) + " Critical Strike!");
+                    console.log("crit Left: ", heroAttack);
                 }
             }
             else {
                 var heroAttack = (heroStatRight * roll);
-                if (heroHealthLeft <= heroAttack) {
+                console.log("non-crit :", heroAttack);
+                console.log("non-crit hero health: ", heroHealthLeft);
+                console.log("non-crit hero health value: ", heroHealthLeftDiv.value);
+                if (heroHealthLeftDiv.value <= heroAttack) {
+                    console.log("non-crit OTK", heroAttack);
+                    console.log("non-crit OTK health: ", heroHealthLeftDiv.value);
                     heroHealthLeftDiv.value = 0;
                     heroHealthLeftDiv.innerHTML = heroHealthLeft;
-
-                    console.log("HERO HEALTH HIT: ", heroHealthLeft);
-                    alert("Game Over, Hero RIGHT Wins");
+                    combatLogLeft.innerHTML = Math.round(heroAttack);
+                    alert("Game Over, Player Two Wins");
                 }
                 else {
-                    console.log("second if else");
-                    heroHealthLeft -= heroAttack;
-                    heroHealthLeftDiv.innerHTML = heroHealthLeft;
-                    heroHealthLeftDiv.value = heroHealthLeft;
-                    
+                    console.log("non-crit no OTK: ", heroAttack);
+                    console.log("non-crit hero health: ", heroHealthLeft);
+                    heroHealthLeftDiv.value -= (heroStatRight * roll);
+                    heroHealthLeftDiv.innerHTML = heroHealthLeftDiv.value;
+                    combatLogLeft.innerHTML = Math.round(heroAttack);
                 }
             }
         }
         else {
-            console.log("Miss");
+            combatLogLeft.innerHTML = "Miss! Player One Heals for " + heroStatLeft;
+            heroHealthLeftDiv.value += heroStatLeft;
         }
     }
     else {
-        alert("Game Over! Hero Right Wins!");
+        alert("Game Over! Player Two Wins!");
     }
 }
 // -----------------------End Combat Engine___________________________
@@ -276,10 +275,10 @@ function combatEngineRightAttack(heroStatRight, heroHealthLeft) {
 window.addEventListener("keydown", checkKeyPressed, false);
  
 function checkKeyPressed(e) {
-    if (e.keyCode == "192") {
+    if (e.keyCode == "187") {
         combatEngineRightAttack(heroStatRight, heroHealthLeft);
     }
-    else if (e.keyCode == "187"){
+    else if (e.keyCode == "192"){
         combatEngineLeftAttack(heroStatLeft, heroHealthRight);
     }
 }

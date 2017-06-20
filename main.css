@@ -9,33 +9,34 @@
 }
 
 body {
-    display: flex;
-      padding: 5vh;
+    height:700px;
+    width:1500px;
+    padding-top:13vh;
     background-color: black;
-    height:100vh;
-    width:100%;
-    background-attachment: fixed;
+    text-align: center;
 }
+    
 .hero-photo {
     width:10vw;
     border-radius: 50%;
+    margin-top:80%;
 }
 
 .left-container, .right-container {
-    flex: 1 1 50%;
+    /*flex: 1 1 50%;*/
     display:flex;
-    justify-content: center;
-    flex-direction: column;
+    /*justify-content: center;*/
+    /*flex-direction: column;*/
     text-align:center;
+    height:100%;
+    position:relative;
 
 }
 
 .hero-container {
        display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height:30vh;
 }
 
 .hero-power {
@@ -54,6 +55,8 @@ body {
 	text-align:center;
 	transition:all 0.3s ease;
     margin-bottom:30vh;
+    top: -15%;
+    position:absolute;
 }
 #input:hover {
 	border-radius:50%;
@@ -131,9 +134,9 @@ button {
     display: flex;
   justify-content: space-around;
   align-items: center;
-  flex: 1 0 100%;
-  /*background-image: url("./background.jpg");
-  background-size: cover;*/
+  background-image: url("./background.gif");
+  height:700px;
+  width:1500px;
 
 }
 .ui-helper-hidden-accessible {
@@ -145,6 +148,8 @@ button {
     height: 100px;
     background-color:white;
     border-radius:5px;
+    position:absolute;
+    bottom:-17%;
 }
 #player-two {
     margin-bottom:30px;
@@ -153,16 +158,22 @@ button {
     background-color:white;
     border-radius:5px;
 }
+.combat-log {
+    color:white;
+    font-size: 40px;
+    position:absolute;
+    top:50%;
+}
 /*__________________________________HEALTH BAR____________________*/
 
 
 progress {
 	width: 400px;
-	height: 14px;
+	height: 25px;
 	margin: 10px auto;
-	/*display: block;*/
 	-webkit-appearance: none;
 	border: none;
+    position:absolute;
 
 }
 
@@ -182,7 +193,8 @@ progress::-webkit-progress-value {
 	background:
 		-webkit-linear-gradient(45deg, transparent, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%),
 		-webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.2)),
-		-webkit-linear-gradient(left, green, darkgreen);
+		-webkit-linear-gradient(left, green, darkgreen
+        );
         transition:all 0.5s ease;
 	
 
