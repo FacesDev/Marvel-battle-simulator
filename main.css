@@ -13,7 +13,6 @@ body {
     width:1500px;
     padding-top:13vh;
     background-color: black;
-    text-align: center;
 }
     
 .hero-photo {
@@ -166,6 +165,8 @@ button {
     height: 100px;
     background-color:white;
     border-radius:5px;
+    position:absolute;
+    bottom:-17%;
 }
 .combat-log {
     color:white;
